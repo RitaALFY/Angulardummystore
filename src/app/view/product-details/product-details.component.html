@@ -1,0 +1,26 @@
+<div *ngIf="product$ | async as product" class="container">
+  <div class="row justify-content-center mt-5">
+    <div class="col-8 card shadow">
+      <div class="card-body text-center">
+        <h5 class="card-title">{{ product.title }}</h5>
+        <p class="card-text">Brand: {{ product.brand }} - Category: {{ product.category }}</p>
+        <p class="card-text">Price: {{ product.price }} €</p>
+        <p class="card-text">Discount: {{ product.discountPercentage }}% - In Stock ({{ product.stock }})</p>
+        <p class="card-text">Rating: {{ product.rating }}/5</p>
+        <p class="card-text">{{ product.description }}</p>
+      </div>
+      <img [src]="product.thumbnail" class="card-img-top" alt="Product Thumbnail">
+      <div class="card-body text-center">
+        <h6>Image Gallery</h6>
+        <div class="d-flex flex-wrap justify-content-center">
+          <div *ngFor="let image of product.images; let i = index" class="gallery-image-container">
+            <img [src]="image" [alt]="'Image ' + (i + 1)" class="gallery-image">
+          </div>
+        </div>
+      </div>
+      <div class="card-footer text-center">
+        <button routerLink="/" class="btn btn-dark">Back</button>
+      </div>
+    </div>
+  </div>
+</div>
