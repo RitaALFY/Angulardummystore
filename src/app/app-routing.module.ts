@@ -7,29 +7,31 @@ import {authGuard} from "./guard/auth/auth.guard";
 import {ProductsListComponent} from "./view/products-list/products-list.component";
 import {CategoriesListComponent} from "./view/categories-list/categories-list.component";
 import {ProductDetailsComponent} from "./view/product-details/product-details.component";
+import {EditProductComponent} from "./view/edit-product/edit-product.component";
 
 const routes: Routes = [
-  { path: '', pathMatch: 'full', redirectTo :'produits'},
-  { path: 'connexion', component: LoginComponent},
-  { path: 'mon-profil', canActivate:[authGuard], component: ProfileComponent},
+  { path: '', pathMatch: 'full', redirectTo: 'produits' },
+  { path: 'connexion', component: LoginComponent },
+  { path: 'mon-profil', canActivate: [authGuard], component: ProfileComponent },
 
   { path: 'produits', children: [
-      { path : '', component : ProductsListComponent},
+      { path: '', component: ProductsListComponent },
       {
         path: 'categories', children: [
-          {path: '', component: CategoriesListComponent},
-          {path: ':name', component: ProductsListComponent},
-
+          { path: '', component: CategoriesListComponent },
+          { path: ':name', component: ProductsListComponent },
         ]
       },
-      { path : ':id', component : ProductDetailsComponent},
+      { path: ':id', children: [
+          { path: '', component: ProductDetailsComponent },
+          { path: 'edit', component: EditProductComponent }
+        ]}
+    ]},
 
-    ]
-  },
-
-  { path : 'introuvable', component :NotFoundComponent},
-  { path : '**', redirectTo: 'introuvable'},
+  { path: 'introuvable', component: NotFoundComponent },
+  { path: '**', redirectTo: 'introuvable' },
 ];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

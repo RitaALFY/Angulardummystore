@@ -12,6 +12,9 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
 import { LoginComponent } from './view/login/login.component';
 import { ProfileComponent } from './view/profile/profile.component';
+import { AddProductComponent } from './view/add-product/add-product.component';
+import { EditProductComponent } from './view/edit-product/edit-product.component';
+import { ProductFormComponent } from './component/product-form/product-form.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { ProfileComponent } from './view/profile/profile.component';
     NotFoundComponent,
     ProductDetailsComponent,
     LoginComponent,
-    ProfileComponent
+    ProfileComponent,
+    AddProductComponent,
+    EditProductComponent,
+    ProductFormComponent
   ],
   imports: [
     BrowserModule,

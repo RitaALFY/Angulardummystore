@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Product} from "../../model/product.model";
 import {ProductService} from "../../service/product/product.service";
 import {ActivatedRoute} from "@angular/router";
+import {Observable} from "rxjs";
+import {AuthService} from "../../service/auth/auth.service";
 
 @Component({
   selector: 'app-products-list',
@@ -10,7 +12,9 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class ProductsListComponent implements OnInit{
   products$!:Promise<Product[]>
-  constructor(private productsService:ProductService, private route:ActivatedRoute,) {
+  token$!: Observable<string>
+  constructor(private productsService:ProductService, private route:ActivatedRoute,
+              private authService: AuthService) {
 
   }
   ngOnInit() {
@@ -23,6 +27,7 @@ export class ProductsListComponent implements OnInit{
       this.products$ = this.productsService.getAll()
 
     }
+    this.token$ =this.authService.token$
   }
 
 }
